@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Environment variables
+.env
+**/.env
+
+# Build outputs
+dist
+build
+client/dist
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode
+.idea
+
+# Figma raw data (optional, maybe keep for debugging but usually don't commit large data)
+server/figma_raw_data.json
+server/figma_processed_data.json
+
+# Downloaded assets (since they are local only)
+client/public/assets/images/*
+!client/public/assets/images/.gitkeep
