@@ -20,23 +20,27 @@ const UploadZone = ({ onConversionStart, onConversionSuccess, onConversionError 
         setLoading(true);
         onConversionStart();
 
+        const API_URL = import.meta.env.VITE_API_URL || '/api';
+
         try {
             let response;
             if (inputType === 'image') {
                 const formData = new FormData();
                 formData.append('image', file);
                 formData.append('mode', mode);
-                response = await axios.post('/api/convert/image', formData, {
+                response = await axios.post(`${API_URL}/convert/image`, formData, {
                     headers: { 'Content-Type': 'multipart/form-data' }
                 });
             } else {
-                response = await axios.post('/api/convert/figma', { url: figmaUrl, mode });
+                response = await axios.post(`${API_URL}/convert/figma`, { url: figmaUrl, mode });
             }
 
             onConversionSuccess(response.data);
         } catch (error) {
             console.error(error);
-            onConversionError(error.response?.data?.error || 'Conversion failed');
+            console.error(error);
+            const errorMsg = error.response?.data?.error || error.message || 'Conversion failed';
+            onConversionError(typeof errorMsg === 'object' ? JSON.stringify(errorMsg) : errorMsg);
         } finally {
             setLoading(false);
         }
