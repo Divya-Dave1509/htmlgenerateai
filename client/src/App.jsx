@@ -46,7 +46,7 @@ function App() {
             </button>
 
             <header>
-                <h1>Figma to HTML Converter</h1>
+                <h1>htmlgenerate.ai</h1>
                 <p>Convert designs to clean, responsive HTML/CSS</p>
             </header>
 
